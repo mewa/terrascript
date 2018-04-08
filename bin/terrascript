@@ -43,6 +43,8 @@ class Transform
       if line.start_with?("@end")
         @arg << "\n"
         transform
+        @arg = ""
+        @body = ""
         @mode = :read
       else
         @arg << line
