@@ -1,65 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'digest'
 require 'fileutils'
-
-class Transform
-  def transform
-    eval("lambda { |#{@argName}|\n#{@body}\n}").call(@arg)
-  end
-
-  def initialize(fname)
-    @fname = fname
-    @mode = :read
-    @argName = "block"
-    @arg = ""
-    @body = ""
-  end
-
-  def process
-    $stdout = File.new(@fname.gsub(".tfrb", ".tf"), "w")
-    File.open(@fname).each do |line|
-      processLine line
-    end
-    $stdout.close
-    $stdout = STDOUT
-  end
-
-  def processLine(line)
-    case @mode
-
-    when :read
-      if line.lstrip.start_with?("@inline")
-        args = line.split(' ')
-        if !args[1].nil?
-          @argName = args[1]
-        end
-        @mode = :body
-      else
-        puts line
-      end
-
-    when :arg
-      if line.lstrip.start_with?("@end")
-        @arg << "\n"
-        transform
-        @arg = ""
-        @body = ""
-        @mode = :read
-      else
-        @arg << line
-      end
-
-    when :body
-      @body << line
-      if line.lstrip.start_with?("return")
-        @mode = :arg
-      end
-
-    end
-  end
-
-end
+require 'digest'
+require 'terrascript'
 
 def processFile f
   hash_dir = ".terraform/.tfrb"
