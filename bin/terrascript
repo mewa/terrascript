@@ -36,4 +36,6 @@ Dir.glob("**/*.tfrb").each do |f|
   processFile(f)
 end
 
-exec("terraform", *ARGV)
+if !ENV.has_key? "TFSC_NOEXEC"
+  exec("terraform", *ARGV)
+end
