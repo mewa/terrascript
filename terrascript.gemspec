@@ -3,8 +3,10 @@ Gem::Specification.new do |s|
   s.version = "0.1.2"
   s.summary = "Terraform wrapper which adds Ruby scripting capabilities to your infrastructure"
 
+  s.add_development_dependency "minitest"
   s.add_development_dependency "pry"
   s.add_development_dependency "pry-doc"
+  s.add_development_dependency "rake"
 
   s.executables << "terrascript"
 
