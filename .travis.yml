@@ -2,9 +2,15 @@ language: ruby
 rvm:
   - 2.2
   - 2.5
-
 jobs:
   include:
     - stage: test
       script:
         - rake test
+    - stage: deploy
+      deploy:
+        provider: rubygems
+        api_key:
+          - secure: iW0QbjS4PeK5+JgQnUD5ZBL2Gnix+cCxxYuoEVnEMGTyvGMkAz2F7bby97ZOxQ+mVAPU6qMIJtlGCqqlVIrN+IymWZpJr5KQ85D14C+GdVTsF3dtwXwABYFEPvNkXC97dorWg111MXBT7v7cKF2NdL6aInp6LdYQEINIXYs3P7QH5caItkdV9zkGaXarkwWYQla1XRBB5Ch/EK/R2Xavks3CUHXacv5djKc/lCd7Ut10EA8v6CQpL3i4yG9zP9hcw8AdTQV9bkIzThXRJAIMRnHmdRW4155Pop36TzwOt7Cd/yfEN+6M7FgF5Ck3nF/RPjeKFwDxqvxfmGeRRFZ1JWs7PoC5oWZQ0m6msvvYdAV/d/Lz2WB8bpcrFBrBhCZtCehoAGUEUbhlPkYeZufnH3WVgB/IUnwka5PcWRT/jHcSj2dAFVTXBcC0uM04m9XE8LDFPE5yy7zL5dk2iHeqPzMI0tbICR/s2CT0lv8KOI6C88VxFDwTUyR3pNp1ANbJpYbmT1csHBBTtYHEZFA+ES9oZRyWWHngfOkoAqIMHW0mfL6oEY3Y5qlkRF+s71aO3+V23oq0Q8ZBMuQE/IECyEcZe0+S25gPO+HzAAO7KQLlKHppna52w9loC4lHSsbbRVJoJbKhO0/vAMXSxOjph5lUInL+YIoQQj5t5yTVSvE=
+        on:
+          tags: true
