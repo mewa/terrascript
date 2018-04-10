@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mewa/terrascript.svg?branch=master)](https://travis-ci.org/mewa/terrascript)
+
 # terrascript
 
 Terrascript is wrapper around Terraform which the ability to script repetitive tasks as inline ruby code.
