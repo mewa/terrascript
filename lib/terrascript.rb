@@ -39,7 +39,6 @@ class Transform
 
     when :arg
       if line.lstrip.start_with?("@end")
-        @arg << "\n"
         transform
         @arg = ""
         @body = ""
