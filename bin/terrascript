@@ -4,11 +4,11 @@ require 'fileutils'
 require 'digest'
 require 'terrascript'
 
-def processFile f
+def processFile fname
   hash_dir = ".terraform/.tfrb"
   FileUtils.mkdir_p(hash_dir)
 
-  fname_hash = Digest::SHA256.hexdigest f
+  fname_hash = Digest::SHA256.hexdigest fname
 
   hash_file = "#{hash_dir}/#{fname_hash}"
 
@@ -17,14 +17,17 @@ def processFile f
     old_sha = File.read hash_file
   end
 
-  sha = Digest::SHA256.hexdigest File.read f
+  versionContents = Gem.loaded_specs['terrascript'].version.version << (File.read fname)
+  sha = Digest::SHA256.hexdigest versionContents
 
   if old_sha != sha
-    File.open(hash_file, "w") { |hash_fd| hash_fd.write sha}
-
-    File.open(f).each do |l|
-      Transform.new(f).process
+    File.open(fname) do |f|
+      File.open(fname.gsub(".tfrb", ".tf"), "w") do |out|
+        Transform.new(f, out).process
+      end
     end
+
+    File.open(hash_file, "w") { |hash_fd| hash_fd.write sha}
     puts "=> Done"
   else
     puts "=> Unchanged"
