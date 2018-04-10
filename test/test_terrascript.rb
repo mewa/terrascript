@@ -49,6 +49,32 @@ x blk x
 	tab blk
 EOF
 
+TC_NESTED_IN = <<EOF
+abc
+@inline
+        puts block
+        return
+test
+        @inline
+        [1, 2, 3].each do |num|
+            puts num, block
+        end
+        return
+repeat
+        @end
+@end
+EOF
+
+TC_NESTED_OUT = <<EOF
+abc
+test
+1
+repeat
+2
+repeat
+3
+repeat
+EOF
 
 class TestTransform < Minitest::Test
 
@@ -70,4 +96,9 @@ class TestTransform < Minitest::Test
   def test_whitespaces
     test(TC_WHITESPACE_IN, TC_WHITESPACE_OUT)
   end
+
+  def test_nested
+    test(TC_NESTED_IN, TC_NESTED_OUT)
+  end
+
 end
