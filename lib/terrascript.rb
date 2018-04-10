@@ -1,12 +1,4 @@
-
-
 class Transform
-  def transform
-    s = $stdout
-    $stdout = @out
-    eval("lambda { |#{@argName}|\n#{@body}\n}").call(@arg)
-    $stdout = s
-  end
 
   def initialize(inFd, outFd = $stdout)
     @in = inFd
@@ -23,7 +15,14 @@ class Transform
     end
   end
 
-  def processLine(line)
+  protected def transform
+    s = $stdout
+    $stdout = @out
+    eval("lambda { |#{@argName}|\n#{@body}\n}").call(@arg)
+    $stdout = s
+  end
+
+  protected def processLine(line)
     case @mode
 
     when :read
