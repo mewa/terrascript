@@ -26,6 +26,8 @@ By default it's accessible inside the inline code under `block` variable, but yo
 
 For example `@inline arg` declaration will pass text in `arg` variable.
 
+Anything the inline ruby code prints (`puts`) is written to the destination `.tf` file.
+
 # Examples
 
 ```hcl
