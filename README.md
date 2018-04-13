@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mewa/terrascript.svg?branch=master)](https://travis-ci.org/mewa/terrascript)
+[![Build Status](https://travis-ci.org/mewa/terrascript.svg?branch=master)](https://travis-ci.org/mewa/terrascript) [![Gem Version](https://badge.fury.io/rb/terrascript.svg)](https://badge.fury.io/rb/terrascript)
 
 # terrascript
 
