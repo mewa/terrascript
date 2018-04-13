@@ -1,8 +1,10 @@
 [![Build Status](https://travis-ci.org/mewa/terrascript.svg?branch=master)](https://travis-ci.org/mewa/terrascript) [![Gem Version](https://badge.fury.io/rb/terrascript.svg)](https://badge.fury.io/rb/terrascript)
 
-# terrascript
+# What is Terrascript
 
-Terrascript is wrapper around Terraform which the ability to script repetitive tasks as inline ruby code.
+Terrascript is wrapper around Terraform which adds the ability to script repetitive tasks as inline ruby code.
+
+Terrascript parses `.tfrb` files, executes ruby code and outputs `.tf` files.
 
 # Usage
 
@@ -20,7 +22,7 @@ return
 Code is evaluated until a `return` statement is found.
 
 Text between `return` and `@end` statements is passed as an argument to the code.
-By default it's accessible inside the inlini code under `block` variable, but you can override the name by specifying your own name in `@inline` directive.
+By default it's accessible inside the inline code under `block` variable, but you can override the name by specifying your own name in `@inline` directive.
 
 For example `@inline arg` declaration will pass text in `arg` variable.
 
