@@ -32,11 +32,7 @@ Anything the inline ruby code prints (`puts`) is written to the destination `.tf
 
 ```hcl
 @inline
-fns = [
-  "one",
-  "two"
-]
-fns.each do |fn|
+["one", "two"].each do |fn|
   puts block.gsub("<fn>", fn)
 end
 return
@@ -110,4 +106,22 @@ resource "aws_lambda_permission" "two_lambda_permission" {
 
   source_arn = "${aws_api_gateway_deployment.stage.execution_arn}/*/*"
 }
+```
+
+# Future improvements
+
+This project was written for my internal needs and serves its purpose.
+
+However if it gains traction I could look into implementing a cleaner solution
+that abstracts the code for some common tasks and leaves open door for extension (plugins, probably).
+
+The code presented here as an example could then look like this:
+
+```hcl
+@replace "<fn>" with ["one", "two"]
+# <fn> alias
+module "<fn>_alias" {
+    some_attribute = "${some_resource.<fn>.something}"
+}
+@end
 ```
