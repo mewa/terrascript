@@ -6,6 +6,8 @@ Terrascript is wrapper around Terraform which adds the ability to script repetit
 
 Terrascript parses `.tfrb` files, executes ruby code and outputs `.tf` files.
 
+Simply invoke `tfsc` with your usual Terraform arguments and enjoy the automation.
+
 # Usage
 
 The overall structure is as shown below:
