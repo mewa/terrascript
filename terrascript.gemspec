@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pry-doc"
   s.add_development_dependency "rake"
 
-  s.executables << "terrascript"
+  s.executables << "tfsc"
 
   s.files = [
     ".gitignore",
